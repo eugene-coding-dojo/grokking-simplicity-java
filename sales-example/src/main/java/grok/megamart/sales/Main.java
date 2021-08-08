@@ -10,7 +10,7 @@ public class Main {
     private static double shoppingCartTotal;
 
     public static void main(String[] args) {
-        addItemToCart("T-shirt", 5.00);
+        addItemToCart("Футболка", 5.00);
     }
 
     private static void addItemToCart(String name, double price) {
@@ -24,10 +24,18 @@ public class Main {
             Item item = shoppingCart.get(i);
             shoppingCartTotal += item.getPrice();
         }
+        logAvailableItems();
         logCartTotal();
     }
 
     private static void logCartTotal() {
-        System.out.printf("Shopping cart total is: %3.2f", shoppingCartTotal);
+        System.out.println("-----");
+        System.out.printf("Общая стоимость товаров в корзине: %3.2f", shoppingCartTotal);
+    }
+
+    private static void logAvailableItems() {
+        System.out.printf("%-10s:%7.2f%n", "Футболка", 5.0);
+        System.out.printf("%-10s:%7.2f%n", "Кроссовки", 12.0);
+        System.out.printf("%-10s:%7.2f%n", "Галстук", 8.0);
     }
 }
