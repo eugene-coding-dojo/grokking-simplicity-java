@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class Main {
     private static List<Item> shoppingCart = new ArrayList<>();
@@ -34,8 +33,13 @@ public class Main {
             Item item = shoppingCart.get(i);
             shoppingCartTotal += item.getPrice();
         }
-        updateShippingInfo();
+
+        logTaxInfo();
         logCartTotal();
+
+        System.out.println("-----");
+
+        updateShippingInfo();
         logAvailableItems();
     }
 
@@ -49,9 +53,12 @@ public class Main {
         }
     }
 
+    private static void logTaxInfo() {
+        System.out.printf("Сумма налога с продаж:%19.2f%n", shoppingCartTotal * 0.1);
+    }
+
     private static void logCartTotal() {
-        System.out.printf("Общая стоимость товаров в корзине: %3.2f%n", shoppingCartTotal);
-        System.out.println("-----");
+        System.out.printf("Общая стоимость товаров в корзине:\t%3.2f%n", shoppingCartTotal);
     }
 
     private static void logAvailableItems() {
