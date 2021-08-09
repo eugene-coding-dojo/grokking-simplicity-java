@@ -1,7 +1,6 @@
 package grok.megamart.sales;
 
 import grok.megamart.domain.Item;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -28,11 +27,7 @@ public class Main {
     }
 
     private static void calcCartTotal() {
-        shoppingCartTotal = 0.0;
-        for (int i = 0; i < shoppingCart.size(); i++) {
-            Item item = shoppingCart.get(i);
-            shoppingCartTotal += item.getPrice();
-        }
+        shoppingCartTotal = calcTotal(shoppingCart);
 
         logTaxInfo();
         logCartTotal();
@@ -41,6 +36,15 @@ public class Main {
 
         updateShippingInfo();
         logAvailableItems();
+    }
+
+    private static double calcTotal(List<Item> cart) {
+        double total = 0.0;
+        for (int i = 0; i < cart.size(); i++) {
+            Item item = cart.get(i);
+            total += item.getPrice();
+        }
+        return total;
     }
 
     private static void updateShippingInfo() {
@@ -54,18 +58,20 @@ public class Main {
     }
 
     private static void logTaxInfo() {
-        System.out.printf("Сумма налога с продаж:%19.2f%n", shoppingCartTotal * 0.1);
+        System.out.printf("Сумма налога с продаж:%19.2f%n",
+                shoppingCartTotal * 0.1);
     }
 
     private static void logCartTotal() {
-        System.out.printf("Общая стоимость товаров в корзине:\t%3.2f%n", shoppingCartTotal);
+        System.out.printf("Общая стоимость товаров в корзине:\t%3.2f%n",
+                shoppingCartTotal);
     }
 
     private static void logAvailableItems() {
         for (Item item : shippingInfo.keySet()) {
             System.out.printf("%-10s:%7.2f\t%s%n",
                     item.getName(), item.getPrice(),
-                    shippingInfo.get(item) ? "Бесплатная доставка!!!" : "");
+                    shippingInfo.get(item) ? "Бесплатная доставка!!!":"");
         }
     }
 }
