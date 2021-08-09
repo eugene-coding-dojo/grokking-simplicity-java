@@ -22,8 +22,14 @@ public class Main {
     }
 
     private static void addItemToCart(String name, double price) {
-        shoppingCart.add(new Item(name, price));
+        shoppingCart = addItem(shoppingCart, name, price);
         calcCartTotal();
+    }
+
+    private static List<Item> addItem(List<Item> cart, String name, double price) {
+        List<Item> newCart = new ArrayList<>(cart);
+        newCart.add(new Item(name, price));
+        return newCart;
     }
 
     private static void calcCartTotal() {
