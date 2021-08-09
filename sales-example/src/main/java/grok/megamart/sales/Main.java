@@ -55,12 +55,16 @@ public class Main {
 
     private static void updateShippingInfo() {
         for (Item item : shippingInfo.keySet()) {
-            if (item.getPrice() + shoppingCartTotal >= 20) {
+            if (getsFreeShipping(item, shoppingCartTotal)) {
                 shippingInfo.put(item, true);
             } else {
                 shippingInfo.put(item, false);
             }
         }
+    }
+
+    private static boolean getsFreeShipping(Item item, double cartTotal) {
+        return item.getPrice() + cartTotal >= 20;
     }
 
     private static void logTaxInfo() {
