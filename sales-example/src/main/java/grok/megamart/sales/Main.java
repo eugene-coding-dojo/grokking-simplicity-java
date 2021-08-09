@@ -64,8 +64,12 @@ public class Main {
     }
 
     private static void logTaxInfo() {
-        System.out.printf("Сумма налога с продаж:%19.2f%n",
-                shoppingCartTotal * 0.1);
+        final double taxAmount = calcTaxAmount(shoppingCartTotal);
+        System.out.printf("Сумма налога с продаж:%19.2f%n", taxAmount);
+    }
+
+    private static double calcTaxAmount(double totalCost) {
+        return totalCost * 0.1;
     }
 
     private static void logCartTotal() {
